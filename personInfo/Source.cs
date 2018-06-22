@@ -10,6 +10,6 @@ namespace personInfo
     {
         public string Name { get; set; }
 
-        public IList<Field> Fields { get; set; }
+        public IDictionary<string, Field> Fields { get; set; }
     }
 }

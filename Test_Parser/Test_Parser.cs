@@ -12,20 +12,52 @@ namespace personInfo
         {
             var p = new Parser();
 
-            var d = p.ParserConfig(@"[{""field"":""name"",""source"":""google"",""sourceField"":""FullName""},{""field"":""hightestQualification"",""source"":""linkedIn"",""sourceField"":""MaxQual""}]");
+            var d = p.ParserConfig(json);
 
             Assert.AreEqual(d.Sources.Count,2);
         }
 
 
         [TestMethod]
-        public void theParserShouldReturnSourceWithOneField()
+        public void theParserShouldReturnGoogleSourceWithTwoFields()
         {
             var p = new Parser();
 
-            var d = p.ParserConfig(@"[{""field"":""name"",""source"":""google"",""sourceField"":""FullName""}]");
+            var d = p.ParserConfig(json);
 
-            Assert.AreEqual(d.Sources[0].Fields.Count, 1);
+            var source = d.Sources["google"];
+
+            Assert.AreEqual(source.Fields.Count, 2);
         }
+
+
+        [TestMethod]
+        public void theParserShouldReturnLinkedInSourceWithOneFields()
+        {
+            var p = new Parser();
+
+            var d = p.ParserConfig(json);
+
+            var source = d.Sources["linkedIn"];
+
+            Assert.AreEqual(source.Fields.Count, 1);
+        }
+
+
+        [TestMethod]
+        public void theParserShouldReturnSourceWithOneFieldFullName()
+        {
+            var p = new Parser();
+
+            var data = p.ParserConfig(json);
+
+            var source = data.Sources["google"];
+
+            var field = source.Fields["FullName"];
+
+            Assert.AreEqual(field.Name, "FullName");
+        }
+
+        const string json = @"[{""field"":""name"",""source"":""google"",""sourceField"":""FullName""},{""field"":""hightestQualification"",""source"":""linkedIn"",""sourceField"":""MaxQual""},{""field"":""age"",""source"":""google"",""sourceField"":""Age""}]";
     }
 }

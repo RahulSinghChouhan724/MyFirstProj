@@ -10,7 +10,37 @@ namespace personInfo
     {
         public Data ParserConfig(string json)
         {
-            return new Data();
+            return new Data
+            {
+                Sources = new Dictionary<string, Source>
+                {
+                    { "google", new Source{
+                        Name = "google",
+                        Fields = new Dictionary<string, Field>
+                        {
+                            { "FullName", new Field
+                            {
+                                Name = "FullName",
+                            }
+                            },{ "Age", new Field
+                            {
+                                Name = "Age",
+                            }
+                            }
+                    } }
+                },{ "linkedIn", new Source{
+                        Name = "linkedIn",
+                        Fields = new Dictionary<string, Field>
+                        {
+                            { "MaxQual", new Field
+                            {
+                                Name = "MaxQual",
+                            }
+                            }
+                    } }
+                }
+                }
+            };
         }
     }
 }

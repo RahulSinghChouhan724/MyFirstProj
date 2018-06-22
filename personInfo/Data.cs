@@ -8,6 +8,6 @@ namespace personInfo
 {
     public class Data
     {
-        public IList<Source> Sources { get; set; }
+        public IDictionary<string, Source> Sources { get; set; }
     }
 }
