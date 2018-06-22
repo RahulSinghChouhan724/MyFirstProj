@@ -27,7 +27,8 @@ namespace personInfo
                                 Name = "Age",
                             }
                             }
-                    } }
+                         }
+                    }
                 },{ "linkedIn", new Source{
                         Name = "linkedIn",
                         Fields = new Dictionary<string, Field>
