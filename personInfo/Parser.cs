@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,38 +11,50 @@ namespace personInfo
     {
         public Data ParserConfig(string json)
         {
-            return new Data
+            // convert string to json array
+            var a = JArray.Parse(json);
+
+            // initialize return object
+            var result = new Data();
+
+            // loop through each item in the json array
+            foreach (var i in a)
             {
-                Sources = new Dictionary<string, Source>
+                // extract the source name
+                var s = i["source"].ToString();
+
+                Source b = null;
+
+                // check if bucket of above sourcename exist
+                if (result.Sources.ContainsKey(s))
                 {
-                    { "google", new Source{
-                        Name = "google",
-                        Fields = new Dictionary<string, Field>
-                        {
-                            { "FullName", new Field
-                            {
-                                Name = "FullName",
-                            }
-                            },{ "Age", new Field
-                            {
-                                Name = "Age",
-                            }
-                            }
-                         }
-                    }
-                },{ "linkedIn", new Source{
-                        Name = "linkedIn",
-                        Fields = new Dictionary<string, Field>
-                        {
-                            { "MaxQual", new Field
-                            {
-                                Name = "MaxQual",
-                            }
-                            }
-                    } }
+                    // the bucket exists
+
+
+                    // get existing bucket
+
                 }
+                else
+                {
+                    // the bucket do not exist
+                    
+                    // create bucket
+                    var b = new Source
+                    {
+                        Name = s
+                    };
+
+                    result.Sources.Add(s, b);
                 }
-            };
+
+
+                // extract field name
+
+
+                // add filedt name to the bucket
+            }
+
+            return result;
         }
     }
 }

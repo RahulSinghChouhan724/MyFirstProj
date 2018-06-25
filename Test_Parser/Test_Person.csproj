@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test_Calculator.cs" />
+    <Compile Include="Test_jtest.cs" />
     <Compile Include="Test_Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

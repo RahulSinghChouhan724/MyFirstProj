@@ -9,5 +9,10 @@ namespace personInfo
     public class Data
     {
         public IDictionary<string, Source> Sources { get; set; }
+
+        public Data()
+        {
+            Sources = new Dictionary<string, Source>();
+        }
     }
 }
